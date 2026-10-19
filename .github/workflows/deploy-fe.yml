@@ -28,3 +28,19 @@ jobs:
           name: ${{ github.ref == 'refs/heads/test' && 'fe-dist-test' || 'fe-dist' }}
           path: dist/
           retention-days: 7
+      - name: Trigger BE deploy
+        uses: actions/github-script@v7
+        env:
+          TOKEN: ${{ secrets.FE_ARTIFACT_TOKEN }}
+        with:
+          script: |
+            await github.rest.repos.createDispatchEvent({
+              owner: 'vanhoutenbos',
+              repo: 'SquadTime',
+              event_type: 'fe-built',
+              client_payload: {
+                artifact: '${{ github.ref == 'refs/heads/test' && 'fe-dist-test' || 'fe-dist' }}',
+                branch: '${{ github.ref_name }}',
+                run_id: '${{ github.run_id }}'
+              }
+            });
