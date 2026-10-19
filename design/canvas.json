@@ -1,0 +1,155 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-07T12:00:00Z" },
+  "title": "Gaming availability planner – main screen",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1160,
+      "title": "Main screen – desktop",
+      "expand": "fill"
+    },
+    "AddTimes.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 1440,
+      "h": 1000,
+      "title": "Add my times – desktop",
+      "expand": "fill"
+    },
+    "ByFriend.dc.html": {
+      "x": 3040,
+      "y": 0,
+      "w": 1440,
+      "h": 1160,
+      "title": "By friend – desktop",
+      "expand": "fill"
+    },
+    "Hover.dc.html": {
+      "x": 0,
+      "y": 1240,
+      "w": 560,
+      "h": 400,
+      "title": "Hover state – overlap cell"
+    },
+    "Account.dc.html": {
+      "x": 640,
+      "y": 1240,
+      "w": 980,
+      "h": 560,
+      "title": "Account menu and delete confirmation"
+    },
+    "Settings.dc.html": {
+      "x": 1700,
+      "y": 1240,
+      "w": 760,
+      "h": 640,
+      "title": "Settings – timezone and sharing"
+    },
+    "SharingOff.dc.html": {
+      "x": 2540,
+      "y": 1240,
+      "w": 1440,
+      "h": 1160,
+      "title": "Calendar – sharing off",
+      "expand": "fill"
+    },
+    "MCalendar.dc.html": { "x": 0, "y": 2480, "w": 390, "h": 1220, "title": "Mobile – calendar" },
+    "MByFriend.dc.html": {
+      "x": 470,
+      "y": 2480,
+      "w": 390,
+      "h": 1000,
+      "title": "Mobile – by friend"
+    },
+    "MAddTimes.dc.html": {
+      "x": 940,
+      "y": 2480,
+      "w": 390,
+      "h": 1340,
+      "title": "Mobile – add my times"
+    },
+    "MSettings.dc.html": {
+      "x": 1410,
+      "y": 2480,
+      "w": 852,
+      "h": 1100,
+      "title": "Mobile – settings and sharing off"
+    },
+    "MSheets.dc.html": {
+      "x": 2342,
+      "y": 2480,
+      "w": 1266,
+      "h": 748,
+      "title": "Mobile – account menu, delete, tapped block"
+    },
+    "Login.dc.html": {
+      "x": 0,
+      "y": 3900,
+      "w": 1480,
+      "h": 760,
+      "title": "Login (desktop and mobile)"
+    },
+    "Onboarding.dc.html": {
+      "x": 1560,
+      "y": 3900,
+      "w": 1480,
+      "h": 760,
+      "title": "Onboarding (desktop and mobile)"
+    },
+    "Waitlist.dc.html": {
+      "x": 3120,
+      "y": 3900,
+      "w": 1480,
+      "h": 760,
+      "title": "Waitlist (desktop and mobile)"
+    },
+    "EmptyState.dc.html": {
+      "x": 0,
+      "y": 4740,
+      "w": 1480,
+      "h": 760,
+      "title": "Empty state – no friends yet (desktop and mobile)"
+    },
+    "InviteLanding.dc.html": {
+      "x": 1560,
+      "y": 4740,
+      "w": 1480,
+      "h": 760,
+      "title": "Invite landing (desktop and mobile)"
+    },
+    "Full.dc.html": {
+      "x": 3120,
+      "y": 4740,
+      "w": 1480,
+      "h": 760,
+      "title": "Full for today (desktop and mobile)"
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "AddTimes.dc.html",
+    "ByFriend.dc.html",
+    "Hover.dc.html",
+    "Account.dc.html",
+    "Settings.dc.html",
+    "SharingOff.dc.html",
+    "MCalendar.dc.html",
+    "MByFriend.dc.html",
+    "MAddTimes.dc.html",
+    "MSettings.dc.html",
+    "MSheets.dc.html",
+    "Login.dc.html",
+    "Onboarding.dc.html",
+    "Waitlist.dc.html",
+    "EmptyState.dc.html",
+    "InviteLanding.dc.html",
+    "Full.dc.html"
+  ],
+  "notes": {},
+  "designSystems": []
+}

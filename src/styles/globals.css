@@ -1,0 +1,160 @@
+:root {
+  --bg: #14161b;
+  --bg-bar: #181b21;
+  --surface: #1c1f26;
+  --border: #2a2e38;
+  --border-strong: #3a404c;
+  --text: #e8eaf0;
+  --text-2: #c4c9d4;
+  --muted: #9aa1af;
+  --mint: #2ee6a6;
+  --amber: #ffb547;
+  --danger: #ff8a8a;
+
+  /* Heat levels */
+  --heat-c0: #1c1f26;
+  --heat-c1-bg: #1f3a33;
+  --heat-c1-text: #bfefdd;
+  --heat-c2-bg: #1f5a4a;
+  --heat-c2-text: #e6fff6;
+  --heat-c3-bg: #20805f;
+  --heat-c3-text: #ffffff;
+  --heat-c4-bg: #27b887;
+  --heat-c4-text: #08130f;
+  --heat-c5-bg: #2ee6a6;
+  --heat-c5-text: #04120c;
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Spacing & radii */
+  --radius-control: 10px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+  --focus-ring: 2px solid var(--mint);
+  --focus-ring-offset: 2px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 22px;
+}
+h3 {
+  font-size: 18px;
+}
+h4 {
+  font-size: 16px;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: var(--amber);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Calendar heat levels */
+.c0 {
+  background: var(--heat-c0);
+  color: var(--muted);
+}
+
+.c1 {
+  background: var(--heat-c1-bg);
+  color: var(--heat-c1-text);
+}
+
+.c2 {
+  background: var(--heat-c2-bg);
+  color: var(--heat-c2-text);
+}
+
+.c3 {
+  background: var(--heat-c3-bg);
+  color: var(--heat-c3-text);
+}
+
+.c4 {
+  background: var(--heat-c4-bg);
+  color: var(--heat-c4-text);
+}
+
+.c5 {
+  background: var(--heat-c5-bg);
+  color: var(--heat-c5-text);
+}
+
+.calendar-slot:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.calendar-slot:disabled {
+  cursor: default;
+}

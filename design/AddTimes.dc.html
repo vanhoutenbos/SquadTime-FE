@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Add my schedule</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          button,
+          input,
+          select {
+            font-family: inherit;
+          }
+          .card {
+            background: #181b21;
+            border: 1px solid #2a2e38;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-sizing: border-box;
+          }
+          .t {
+            margin: 0;
+            font:
+              700 18px 'Space Grotesk',
+              sans-serif;
+          }
+          .s {
+            margin: 4px 0 0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .btn {
+            min-height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+            cursor: pointer;
+          }
+          .pri {
+            background: #ffb547;
+            border-color: #ffb547;
+            color: #1a1203;
+            font-weight: 700;
+          }
+          .day {
+            min-width: 52px;
+            min-height: 44px;
+            padding: 0 10px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: transparent;
+            color: #c4c9d4;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+            cursor: pointer;
+          }
+          .on {
+            background: #2ee6a6;
+            border-color: #2ee6a6;
+            color: #04120c;
+          }
+          .in {
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 15px 'DM Sans',
+              sans-serif;
+            color-scheme: dark;
+            box-sizing: border-box;
+          }
+          .lab {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font:
+              500 13px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #1c1f26;
+          }
+          .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+            border: 1px solid #3a404c;
+            color: #c4c9d4;
+            margin-right: 6px;
+          }
+          .d {
+            width: 56px;
+            text-align: center;
+            font:
+              700 15px 'Space Grotesk',
+              sans-serif;
+          }
+          .d span {
+            display: block;
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .tm {
+            font:
+              600 15px 'DM Sans',
+              sans-serif;
+            margin-bottom: 4px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          width: 100%;
+          min-height: 1000px;
+          box-sizing: border-box;
+          background: #14161b;
+          color: #e8eaf0;
+          font-family: 'DM Sans', sans-serif;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 14px 32px;
+            border-bottom: 1px solid #2a2e38;
+            background: #181b21;
+          "
+        >
+          <div style="display: flex; align-items: center; gap: 12px">
+            <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true">
+              <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+              <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+              <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+              <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" />
+            </svg>
+            <span
+              style="
+                font:
+                  700 20px 'Space Grotesk',
+                  sans-serif;
+              "
+              >SquadTime</span
+            >
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+            <button
+              type="button"
+              aria-label="Account menu"
+              aria-haspopup="menu"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #2a2e38;
+                border: 1px solid #3a404c;
+                color: #e8eaf0;
+                cursor: pointer;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font:
+                  600 13px 'DM Sans',
+                  sans-serif;
+              "
+            >
+              ME
+            </button>
+          </div>
+        </header>
+
+        <main
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 24px 32px;
+            width: 100%;
+            max-width: 1360px;
+            margin: 0 auto;
+            box-sizing: border-box;
+          "
+        >
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+            <button type="button" class="btn" style="display: flex; align-items: center; gap: 6px">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 6l-6 6 6 6" /></svg
+              >Calendar
+            </button>
+            <div>
+              <h1
+                style="
+                  margin: 0;
+                  font:
+                    700 28px 'Space Grotesk',
+                    sans-serif;
+                "
+              >
+                Add my <span style="color: #2ee6a6">times</span>
+              </h1>
+              <p class="s">
+                Set your usual evenings once. Change a single day any time, without touching the
+                rest.
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px">
+            <div
+              style="
+                flex: 1 1 360px;
+                max-width: 460px;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+              "
+            >
+              <section class="card">
+                <div>
+                  <h2 class="t">Usual times</h2>
+                  <p class="s">Repeats every week until you change it.</p>
+                </div>
+                <div
+                  style="display: flex; flex-wrap: wrap; gap: 8px"
+                  role="group"
+                  aria-label="Days"
+                >
+                  <button type="button" class="day on" aria-pressed="true">Mon</button>
+                  <button type="button" class="day" aria-pressed="false">Tue</button>
+                  <button type="button" class="day on" aria-pressed="true">Wed</button>
+                  <button type="button" class="day" aria-pressed="false">Thu</button>
+                  <button type="button" class="day on" aria-pressed="true">Fri</button>
+                  <button type="button" class="day" aria-pressed="false">Sat</button>
+                  <button type="button" class="day" aria-pressed="false">Sun</button>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                  <label class="lab">From<input class="in" type="time" value="20:00" /></label>
+                  <label class="lab">To<input class="in" type="time" value="23:00" /></label>
+                </div>
+                <p class="s" style="margin: 0">
+                  Times are in your timezone: Europe/Amsterdam (UTC+2).
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                  <button type="button" class="btn pri">Save usual times</button>
+                  <button type="button" class="btn">Add another time range</button>
+                </div>
+              </section>
+
+              <section class="card">
+                <div>
+                  <h2 class="t">Extra one-time slot</h2>
+                  <p class="s">For the odd evening that isn't in your usual times.</p>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                  <label class="lab">Date<input class="in" type="date" value="2026-10-15" /></label>
+                  <label class="lab">From<input class="in" type="time" value="20:00" /></label>
+                  <label class="lab">To<input class="in" type="time" value="22:30" /></label>
+                </div>
+                <div><button type="button" class="btn">Add one-time slot</button></div>
+              </section>
+            </div>
+
+            <section class="card" style="flex: 1.5 1 460px; min-width: 0">
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: baseline;
+                  justify-content: space-between;
+                  gap: 8px;
+                "
+              >
+                <div>
+                  <h2 class="t">Your upcoming times</h2>
+                  <p class="s">Next two weeks. Edit or cancel any day on its own.</p>
+                </div>
+                <span
+                  style="
+                    font:
+                      500 13px 'DM Sans',
+                      sans-serif;
+                    color: #2ee6a6;
+                  "
+                  >Friends can see these</span
+                >
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 8px">
+                <div class="row">
+                  <div class="d">Wed<span>Oct 7</span></div>
+                  <div style="flex: 1 1 160px">
+                    <div class="tm">20:00 – 23:00</div>
+                    <span class="tag">Usual</span
+                    ><span class="tag" style="border-color: #ffb547; color: #ffb547">Today</span>
+                  </div>
+                  <button type="button" class="btn">Edit</button
+                  ><button type="button" class="btn">Cancel</button>
+                </div>
+
+                <div class="row" style="opacity: 0.8">
+                  <div class="d">Fri<span>Oct 9</span></div>
+                  <div style="flex: 1 1 160px">
+                    <div class="tm" style="text-decoration: line-through; color: #9aa1af">
+                      20:00 – 23:00
+                    </div>
+                    <span class="tag">Cancelled</span>
+                  </div>
+                  <button type="button" class="btn">Restore</button>
+                </div>
+
+                <div class="row">
+                  <div class="d">Mon<span>Oct 12</span></div>
+                  <div style="flex: 1 1 160px">
+                    <div class="tm">20:00 – 23:00</div>
+                    <span class="tag">Usual</span>
+                  </div>
+                  <button type="button" class="btn">Edit</button
+                  ><button type="button" class="btn">Cancel</button>
+                </div>
+
+                <div style="border: 1px solid #ffb547; border-radius: 12px; background: #1c1f26">
+                  <div class="row" style="background: transparent">
+                    <div class="d">Wed<span>Oct 14</span></div>
+                    <div style="flex: 1 1 160px">
+                      <div class="tm">19:30 – 23:00</div>
+                      <span class="tag" style="border-color: #ffb547; color: #ffb547"
+                        >Changed · starts 30 min earlier</span
+                      >
+                    </div>
+                    <button type="button" class="btn">Close</button>
+                  </div>
+                  <div
+                    style="
+                      padding: 12px;
+                      border-top: 1px solid #2a2e38;
+                      display: flex;
+                      flex-direction: column;
+                      gap: 14px;
+                    "
+                  >
+                    <div
+                      style="
+                        display: flex;
+                        border: 1px solid #3a404c;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        align-self: flex-start;
+                        flex-wrap: wrap;
+                      "
+                      role="group"
+                      aria-label="Apply change to"
+                    >
+                      <button
+                        type="button"
+                        aria-pressed="true"
+                        style="
+                          min-height: 44px;
+                          padding: 0 16px;
+                          border: 0;
+                          background: #2a2e38;
+                          color: #e8eaf0;
+                          font:
+                            600 14px 'DM Sans',
+                            sans-serif;
+                          cursor: pointer;
+                        "
+                      >
+                        Only this time
+                      </button>
+                      <button
+                        type="button"
+                        aria-pressed="false"
+                        style="
+                          min-height: 44px;
+                          padding: 0 16px;
+                          border: 0;
+                          background: #1c1f26;
+                          color: #9aa1af;
+                          font:
+                            500 14px 'DM Sans',
+                            sans-serif;
+                          cursor: pointer;
+                        "
+                      >
+                        This and all future times
+                      </button>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                      <label class="lab">From<input class="in" type="time" value="19:30" /></label>
+                      <label class="lab">To<input class="in" type="time" value="23:00" /></label>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px">
+                      <button type="button" class="btn pri">Save change</button>
+                      <button type="button" class="btn">Reset to usual</button>
+                      <button type="button" class="btn">Cancel this time</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row" style="border: 1px solid #2ee6a6; background: #16201c">
+                  <div class="d">Thu<span>Oct 15</span></div>
+                  <div style="flex: 1 1 160px">
+                    <div class="tm">20:00 – 22:30</div>
+                    <span class="tag" style="border-color: #2ee6a6; color: #2ee6a6"
+                      >Extra · one time</span
+                    >
+                  </div>
+                  <button type="button" class="btn">Edit</button
+                  ><button type="button" class="btn">Remove</button>
+                </div>
+
+                <div class="row">
+                  <div class="d">Fri<span>Oct 16</span></div>
+                  <div style="flex: 1 1 160px">
+                    <div class="tm">20:00 – 23:00</div>
+                    <span class="tag">Usual</span>
+                  </div>
+                  <button type="button" class="btn">Edit</button
+                  ><button type="button" class="btn">Cancel</button>
+                </div>
+              </div>
+
+              <p class="s" style="margin: 0">
+                Changing or cancelling one day never touches the rest of your usual times.
+              </p>
+            </section>
+          </div>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

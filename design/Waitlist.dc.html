@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Waitlist</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          button,
+          input,
+          select {
+            font-family: inherit;
+            cursor: pointer;
+          }
+          .p {
+            width: 390px;
+            box-sizing: border-box;
+            background: #14161b;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+          }
+          .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #181b21;
+            border-bottom: 1px solid #2a2e38;
+          }
+          .lg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font:
+              700 18px 'Space Grotesk',
+              sans-serif;
+          }
+          .me {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2a2e38;
+            border: 1px solid #3a404c;
+            color: #e8eaf0;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+            padding: 0;
+          }
+          .m {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+          }
+          .h1 {
+            margin: 0;
+            font:
+              700 22px 'Space Grotesk',
+              sans-serif;
+          }
+          .mu {
+            color: #9aa1af;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+          .bt {
+            min-height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .pr {
+            background: #ffb547;
+            border-color: #ffb547;
+            color: #1a1203;
+            font-weight: 700;
+          }
+          .w {
+            width: 100%;
+          }
+          .cd {
+            background: #181b21;
+            border: 1px solid #2a2e38;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-sizing: border-box;
+          }
+          .tt {
+            margin: 0;
+            font:
+              700 16px 'Space Grotesk',
+              sans-serif;
+          }
+          .tb {
+            display: flex;
+            border-top: 1px solid #2a2e38;
+            background: #181b21;
+          }
+          .tb button {
+            flex: 1;
+            min-height: 56px;
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+          }
+          .tb .on {
+            color: #2ee6a6;
+            box-shadow: inset 0 2px 0 #2ee6a6;
+          }
+          .sg {
+            display: flex;
+            border: 1px solid #3a404c;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+          .sg button {
+            flex: 1;
+            min-height: 44px;
+            border: 0;
+            background: #1c1f26;
+            color: #9aa1af;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .sg .on {
+            background: #2a2e38;
+            color: #e8eaf0;
+            font-weight: 600;
+          }
+          .dy {
+            width: 46px;
+            min-height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: transparent;
+            color: #c4c9d4;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+          }
+          .dy.on {
+            background: #2ee6a6;
+            border-color: #2ee6a6;
+            color: #04120c;
+          }
+          .in {
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 15px 'DM Sans',
+              sans-serif;
+            color-scheme: dark;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .lb {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            flex: 1;
+          }
+          .tg {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #3a404c;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin-right: 4px;
+          }
+          .rw {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #1c1f26;
+          }
+          .rw .d {
+            width: 46px;
+            text-align: center;
+            font:
+              700 14px 'Space Grotesk',
+              sans-serif;
+          }
+          .rw .d span {
+            display: block;
+            font:
+              400 11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .wg {
+            display: grid;
+            grid-template-columns: 34px repeat(7, 1fr);
+            gap: 2px;
+          }
+          .wg > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            border-radius: 5px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .wg > b {
+            font:
+              500 11px/11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            margin-top: -5px;
+            text-align: right;
+            padding-right: 4px;
+            align-self: start;
+          }
+          .wg > span {
+            font:
+              600 11px/1.2 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+            text-align: center;
+            padding: 4px 0;
+          }
+          .c0 {
+            background: #1c1f26;
+          }
+          .c1 {
+            background: #1f3a33;
+            color: #bfefdd;
+          }
+          .c2 {
+            background: #1f5a4a;
+            color: #e6fff6;
+          }
+          .c3 {
+            background: #20805f;
+            color: #ffffff;
+          }
+          .c4 {
+            background: #27b887;
+            color: #08130f;
+          }
+          .c5 {
+            background: #2ee6a6;
+            color: #04120c;
+          }
+          .tl {
+            display: grid;
+            grid-template-columns: 78px repeat(14, 1fr);
+            grid-template-rows: 20px 30px repeat(5, 44px);
+            row-gap: 3px;
+          }
+          .tl > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            grid-row: 2;
+            box-shadow: inset 0 0 0 1px #181b21;
+          }
+          .tl .hh {
+            grid-row: 1;
+            font:
+              600 11px 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .tl .nm {
+            grid-column: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .tl .a {
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 10px 'DM Sans',
+              sans-serif;
+          }
+          .tl .bar {
+            align-self: center;
+            height: 30px;
+            margin: 0 1px;
+            border-radius: 6px;
+            background: #20805f;
+          }
+          .ov {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+          }
+          .sh {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1f26;
+            border-top: 1px solid #3a404c;
+            border-radius: 18px 18px 0 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .mi {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            width: 100%;
+            min-height: 44px;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #e8eaf0;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+            text-align: left;
+          }
+          .mi small {
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+
+          .big {
+            font:
+              700 40px/1.1 'Space Grotesk',
+              sans-serif;
+            margin: 0;
+          }
+          .lead {
+            font:
+              400 16px/1.5 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin: 0;
+          }
+          .fr {
+            width: 1000px;
+            height: 680px;
+            box-sizing: border-box;
+            background: #14161b;
+            border: 1px solid #2a2e38;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+          }
+          .n {
+            flex: 0 0 28px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              700 13px 'Space Grotesk',
+              sans-serif;
+            color: #2ee6a6;
+          }
+          .ck {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            min-height: 44px;
+            font:
+              400 14px/1.4 'DM Sans',
+              sans-serif;
+            color: #e8eaf0;
+          }
+          .ck input {
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            accent-color: #2ee6a6;
+            flex: 0 0 22px;
+          }
+          .lk {
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            text-decoration: underline;
+            font:
+              500 13px 'DM Sans',
+              sans-serif;
+            min-height: 44px;
+            padding: 0 6px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          display: flex;
+          gap: 32px;
+          padding: 24px;
+          background: #0e1014;
+          width: 1480px;
+          height: 760px;
+          box-sizing: border-box;
+          align-items: flex-start;
+        "
+      >
+        <div class="fr">
+          <div class="top" style="padding: 14px 32px">
+            <span class="lg"
+              ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+                <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+                <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+                <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+                <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+              >SquadTime</span
+            ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+          </div>
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              padding: 24px 0;
+              overflow: hidden;
+            "
+          >
+            <div
+              style="
+                width: 520px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+                align-items: stretch;
+              "
+            >
+              <div style="align-self: center">
+                <svg
+                  width="240"
+                  height="120"
+                  viewBox="0 0 40 20"
+                  shape-rendering="crispEdges"
+                  role="img"
+                  aria-label="Pixel art of a gaming desk at night"
+                  style="border-radius: 12px; border: 1px solid #2a2e38; flex: 0 0 auto"
+                >
+                  <rect width="40" height="20" fill="#1C1F26" />
+                  <rect x="2" y="2" width="12" height="9" fill="#0F2A3A" />
+                  <rect x="10" y="3" width="2" height="2" fill="#FFE9A8" />
+                  <rect x="4" y="4" width="1" height="1" fill="#E8EAF0" />
+                  <rect x="7" y="7" width="1" height="1" fill="#E8EAF0" />
+                  <rect x="18" y="3" width="14" height="9" fill="#2A2E38" />
+                  <rect x="19" y="4" width="12" height="7" fill="#0B1A14" />
+                  <rect x="21" y="6" width="2" height="2" fill="#2EE6A6" />
+                  <rect x="25" y="7" width="3" height="2" fill="#27B887" />
+                  <rect x="28" y="5" width="1" height="1" fill="#FFB547" />
+                  <rect x="24" y="12" width="2" height="2" fill="#2A2E38" />
+                  <rect x="22" y="14" width="6" height="1" fill="#2A2E38" />
+                  <rect y="15" width="40" height="5" fill="#232730" />
+                  <rect x="6" y="13" width="9" height="3" fill="#3A404C" />
+                  <rect x="5" y="14" width="2" height="3" fill="#3A404C" />
+                  <rect x="14" y="14" width="2" height="3" fill="#3A404C" />
+                  <rect x="8" y="14" width="2" height="1" fill="#9AA1AF" />
+                  <rect x="12" y="13" width="1" height="1" fill="#FFB547" />
+                  <rect x="13" y="14" width="1" height="1" fill="#2EE6A6" />
+                  <rect x="34" y="9" width="3" height="4" fill="#20805F" />
+                  <rect x="34" y="13" width="3" height="2" fill="#8A5A2B" />
+                </svg>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  text-align: center;
+                  gap: 14px;
+                "
+              >
+                <div
+                  class="mu"
+                  style="
+                    font-weight: 600;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    color: #ffb547;
+                  "
+                >
+                  Waitlist
+                </div>
+                <div
+                  style="
+                    font:
+                      700 72px/1 'Space Grotesk',
+                      sans-serif;
+                    color: #2ee6a6;
+                  "
+                  aria-hidden="true"
+                >
+                  #3
+                </div>
+                <b class="tt" style="font-size: 22px">Your spot is position 3</b>
+                <p class="lead" style="font-size: 15px">
+                  We let people in a few at a time to keep things running smoothly. Hang tight, you
+                  are close.
+                </p>
+              </div>
+              <div class="cd" style="background: #1c1f26">
+                <b style="font-size: 14px">How you will hear from us</b>
+                <div class="mu">
+                  We announce every batch in our Discord community with an @mention. Join so you do
+                  not miss it. This page also shows your spot when you open it.
+                </div>
+                <button class="bt pr w">Join the community</button>
+              </div>
+              <div class="cd" style="background: #1c1f26">
+                <b style="font-size: 14px">Bring your squad</b>
+                <div class="mu">Friends you invite can get in together with you.</div>
+                <button class="bt w">Invite friends</button>
+              </div>
+              <div style="text-align: center">
+                <button class="lk">Leave the waitlist and delete my data</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p" style="height: 680px">
+          <div class="top" style="padding: 10px 16px">
+            <span class="lg"
+              ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+                <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+                <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+                <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+                <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+              >SquadTime</span
+            ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+          </div>
+          <div class="m" style="gap: 12px; overflow: hidden">
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 14px;
+              "
+            >
+              <div
+                class="mu"
+                style="
+                  font-weight: 600;
+                  letter-spacing: 0.04em;
+                  text-transform: uppercase;
+                  font-size: 12px;
+                  color: #ffb547;
+                "
+              >
+                Waitlist
+              </div>
+              <div
+                style="
+                  font:
+                    700 72px/1 'Space Grotesk',
+                    sans-serif;
+                  color: #2ee6a6;
+                "
+                aria-hidden="true"
+              >
+                #3
+              </div>
+              <b class="tt" style="font-size: 22px">Your spot is position 3</b>
+              <p class="lead" style="font-size: 15px">
+                We let people in a few at a time to keep things running smoothly. Hang tight, you
+                are close.
+              </p>
+            </div>
+            <div class="cd" style="background: #1c1f26">
+              <b style="font-size: 14px">How you will hear from us</b>
+              <div class="mu">
+                We announce every batch in our Discord community with an @mention. Join so you do
+                not miss it. This page also shows your spot when you open it.
+              </div>
+              <button class="bt pr w">Join the community</button>
+            </div>
+            <div class="cd" style="background: #1c1f26">
+              <b style="font-size: 14px">Bring your squad</b>
+              <div class="mu">Friends you invite can get in together with you.</div>
+              <button class="bt w">Invite friends</button>
+            </div>
+            <div style="text-align: center">
+              <button class="lk">Leave the waitlist and delete my data</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1480,"height":760}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

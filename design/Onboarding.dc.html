@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Onboarding</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          button,
+          input,
+          select {
+            font-family: inherit;
+            cursor: pointer;
+          }
+          .p {
+            width: 390px;
+            box-sizing: border-box;
+            background: #14161b;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+          }
+          .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #181b21;
+            border-bottom: 1px solid #2a2e38;
+          }
+          .lg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font:
+              700 18px 'Space Grotesk',
+              sans-serif;
+          }
+          .me {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2a2e38;
+            border: 1px solid #3a404c;
+            color: #e8eaf0;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+            padding: 0;
+          }
+          .m {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+          }
+          .h1 {
+            margin: 0;
+            font:
+              700 22px 'Space Grotesk',
+              sans-serif;
+          }
+          .mu {
+            color: #9aa1af;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+          .bt {
+            min-height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .pr {
+            background: #ffb547;
+            border-color: #ffb547;
+            color: #1a1203;
+            font-weight: 700;
+          }
+          .w {
+            width: 100%;
+          }
+          .cd {
+            background: #181b21;
+            border: 1px solid #2a2e38;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-sizing: border-box;
+          }
+          .tt {
+            margin: 0;
+            font:
+              700 16px 'Space Grotesk',
+              sans-serif;
+          }
+          .tb {
+            display: flex;
+            border-top: 1px solid #2a2e38;
+            background: #181b21;
+          }
+          .tb button {
+            flex: 1;
+            min-height: 56px;
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+          }
+          .tb .on {
+            color: #2ee6a6;
+            box-shadow: inset 0 2px 0 #2ee6a6;
+          }
+          .sg {
+            display: flex;
+            border: 1px solid #3a404c;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+          .sg button {
+            flex: 1;
+            min-height: 44px;
+            border: 0;
+            background: #1c1f26;
+            color: #9aa1af;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .sg .on {
+            background: #2a2e38;
+            color: #e8eaf0;
+            font-weight: 600;
+          }
+          .dy {
+            width: 46px;
+            min-height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: transparent;
+            color: #c4c9d4;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+          }
+          .dy.on {
+            background: #2ee6a6;
+            border-color: #2ee6a6;
+            color: #04120c;
+          }
+          .in {
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 15px 'DM Sans',
+              sans-serif;
+            color-scheme: dark;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .lb {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            flex: 1;
+          }
+          .tg {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #3a404c;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin-right: 4px;
+          }
+          .rw {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #1c1f26;
+          }
+          .rw .d {
+            width: 46px;
+            text-align: center;
+            font:
+              700 14px 'Space Grotesk',
+              sans-serif;
+          }
+          .rw .d span {
+            display: block;
+            font:
+              400 11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .wg {
+            display: grid;
+            grid-template-columns: 34px repeat(7, 1fr);
+            gap: 2px;
+          }
+          .wg > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            border-radius: 5px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .wg > b {
+            font:
+              500 11px/11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            margin-top: -5px;
+            text-align: right;
+            padding-right: 4px;
+            align-self: start;
+          }
+          .wg > span {
+            font:
+              600 11px/1.2 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+            text-align: center;
+            padding: 4px 0;
+          }
+          .c0 {
+            background: #1c1f26;
+          }
+          .c1 {
+            background: #1f3a33;
+            color: #bfefdd;
+          }
+          .c2 {
+            background: #1f5a4a;
+            color: #e6fff6;
+          }
+          .c3 {
+            background: #20805f;
+            color: #ffffff;
+          }
+          .c4 {
+            background: #27b887;
+            color: #08130f;
+          }
+          .c5 {
+            background: #2ee6a6;
+            color: #04120c;
+          }
+          .tl {
+            display: grid;
+            grid-template-columns: 78px repeat(14, 1fr);
+            grid-template-rows: 20px 30px repeat(5, 44px);
+            row-gap: 3px;
+          }
+          .tl > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            grid-row: 2;
+            box-shadow: inset 0 0 0 1px #181b21;
+          }
+          .tl .hh {
+            grid-row: 1;
+            font:
+              600 11px 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .tl .nm {
+            grid-column: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .tl .a {
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 10px 'DM Sans',
+              sans-serif;
+          }
+          .tl .bar {
+            align-self: center;
+            height: 30px;
+            margin: 0 1px;
+            border-radius: 6px;
+            background: #20805f;
+          }
+          .ov {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+          }
+          .sh {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1f26;
+            border-top: 1px solid #3a404c;
+            border-radius: 18px 18px 0 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .mi {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            width: 100%;
+            min-height: 44px;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #e8eaf0;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+            text-align: left;
+          }
+          .mi small {
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+
+          .big {
+            font:
+              700 40px/1.1 'Space Grotesk',
+              sans-serif;
+            margin: 0;
+          }
+          .lead {
+            font:
+              400 16px/1.5 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin: 0;
+          }
+          .fr {
+            width: 1000px;
+            height: 680px;
+            box-sizing: border-box;
+            background: #14161b;
+            border: 1px solid #2a2e38;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+          }
+          .n {
+            flex: 0 0 28px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              700 13px 'Space Grotesk',
+              sans-serif;
+            color: #2ee6a6;
+          }
+          .ck {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            min-height: 44px;
+            font:
+              400 14px/1.4 'DM Sans',
+              sans-serif;
+            color: #e8eaf0;
+          }
+          .ck input {
+            width: 22px;
+            height: 22px;
+            margin: 0;
+            accent-color: #2ee6a6;
+            flex: 0 0 22px;
+          }
+          .lk {
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            text-decoration: underline;
+            font:
+              500 13px 'DM Sans',
+              sans-serif;
+            min-height: 44px;
+            padding: 0 6px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          display: flex;
+          gap: 32px;
+          padding: 24px;
+          background: #0e1014;
+          width: 1480px;
+          height: 760px;
+          box-sizing: border-box;
+          align-items: flex-start;
+        "
+      >
+        <div class="fr">
+          <div class="top" style="padding: 14px 32px">
+            <span class="lg"
+              ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+                <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+                <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+                <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+                <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+              >SquadTime</span
+            ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+          </div>
+          <div
+            style="
+              flex: 1;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 24px;
+              padding: 0 40px;
+            "
+          >
+            <div class="cd" style="width: 420px; gap: 14px">
+              <div style="display: flex; align-items: center; gap: 10px">
+                <span class="n">1</span><span class="mu">Step 1 of 2</span>
+              </div>
+              <b class="tt" style="font-size: 20px">Pick your timezone</b>
+              <div class="mu">
+                We think you are in <b style="color: #e8eaf0">Europe/Amsterdam (UTC+2, CEST)</b>.
+                Every time in the app is shown in this timezone, and you can change it later in
+                Settings.
+              </div>
+              <label class="lb"
+                >Your timezone<select class="in">
+                  <option>Europe/Amsterdam · UTC+2 (CEST)</option>
+                </select></label
+              ><button class="bt pr w">Looks right, continue</button>
+            </div>
+            <div class="cd" style="width: 420px; gap: 14px">
+              <div style="display: flex; align-items: center; gap: 10px">
+                <span class="n">2</span><span class="mu">Step 2 of 2</span>
+              </div>
+              <b class="tt" style="font-size: 20px">One quick thing</b>
+              <div class="mu" style="font-size: 14px">
+                Friends see when you are free, and you see when they are. Turn this off any time in
+                Settings. Then you stop seeing them too.
+              </div>
+              <label class="ck"
+                ><input type="checkbox" checked /><span>I am 16 or older.</span></label
+              ><label class="ck"
+                ><input type="checkbox" checked /><span
+                  >I agree to the Terms and the Privacy statement.</span
+                ></label
+              >
+              <div class="mu" style="font-size: 12px">
+                We store your Discord ID and name, your timezone and your times. No email. You can
+                delete everything any time.
+              </div>
+              <button class="bt pr w">Let's go</button>
+            </div>
+          </div>
+        </div>
+        <div class="p" style="height: 680px">
+          <div class="top" style="padding: 10px 16px">
+            <span class="lg"
+              ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+                <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+                <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+                <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+                <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+              >SquadTime</span
+            ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+          </div>
+          <div class="m" style="justify-content: center">
+            <div class="cd" style="width: 100%; gap: 14px">
+              <div style="display: flex; align-items: center; gap: 10px">
+                <span class="n">2</span><span class="mu">Step 2 of 2</span>
+              </div>
+              <b class="tt" style="font-size: 20px">One quick thing</b>
+              <div class="mu" style="font-size: 14px">
+                Friends see when you are free, and you see when they are. Turn this off any time in
+                Settings. Then you stop seeing them too.
+              </div>
+              <label class="ck"
+                ><input type="checkbox" checked /><span>I am 16 or older.</span></label
+              ><label class="ck"
+                ><input type="checkbox" checked /><span
+                  >I agree to the Terms and the Privacy statement.</span
+                ></label
+              >
+              <div class="mu" style="font-size: 12px">
+                We store your Discord ID and name, your timezone and your times. No email. You can
+                delete everything any time.
+              </div>
+              <button class="bt pr w">Let's go</button>
+            </div>
+            <div class="mu" style="text-align: center; font-size: 12px">
+              Step 1 (timezone) comes first, same layout.
+            </div>
+          </div>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1480,"height":760}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

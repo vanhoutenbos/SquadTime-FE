@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mobile add my schedule</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          button,
+          input,
+          select {
+            font-family: inherit;
+            cursor: pointer;
+          }
+          .p {
+            width: 390px;
+            box-sizing: border-box;
+            background: #14161b;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+          }
+          .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #181b21;
+            border-bottom: 1px solid #2a2e38;
+          }
+          .lg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font:
+              700 18px 'Space Grotesk',
+              sans-serif;
+          }
+          .me {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2a2e38;
+            border: 1px solid #3a404c;
+            color: #e8eaf0;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+            padding: 0;
+          }
+          .m {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+          }
+          .h1 {
+            margin: 0;
+            font:
+              700 22px 'Space Grotesk',
+              sans-serif;
+          }
+          .mu {
+            color: #9aa1af;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+          .bt {
+            min-height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .pr {
+            background: #ffb547;
+            border-color: #ffb547;
+            color: #1a1203;
+            font-weight: 700;
+          }
+          .w {
+            width: 100%;
+          }
+          .cd {
+            background: #181b21;
+            border: 1px solid #2a2e38;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-sizing: border-box;
+          }
+          .tt {
+            margin: 0;
+            font:
+              700 16px 'Space Grotesk',
+              sans-serif;
+          }
+          .tb {
+            display: flex;
+            border-top: 1px solid #2a2e38;
+            background: #181b21;
+          }
+          .tb button {
+            flex: 1;
+            min-height: 56px;
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+          }
+          .tb .on {
+            color: #2ee6a6;
+            box-shadow: inset 0 2px 0 #2ee6a6;
+          }
+          .sg {
+            display: flex;
+            border: 1px solid #3a404c;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+          .sg button {
+            flex: 1;
+            min-height: 44px;
+            border: 0;
+            background: #1c1f26;
+            color: #9aa1af;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .sg .on {
+            background: #2a2e38;
+            color: #e8eaf0;
+            font-weight: 600;
+          }
+          .dy {
+            width: 46px;
+            min-height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: transparent;
+            color: #c4c9d4;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+          }
+          .dy.on {
+            background: #2ee6a6;
+            border-color: #2ee6a6;
+            color: #04120c;
+          }
+          .in {
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 15px 'DM Sans',
+              sans-serif;
+            color-scheme: dark;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .lb {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            flex: 1;
+          }
+          .tg {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #3a404c;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin-right: 4px;
+          }
+          .rw {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #1c1f26;
+          }
+          .rw .d {
+            width: 46px;
+            text-align: center;
+            font:
+              700 14px 'Space Grotesk',
+              sans-serif;
+          }
+          .rw .d span {
+            display: block;
+            font:
+              400 11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .wg {
+            display: grid;
+            grid-template-columns: 34px repeat(7, 1fr);
+            gap: 2px;
+          }
+          .wg > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            border-radius: 5px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .wg > b {
+            font:
+              500 11px/11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            margin-top: -5px;
+            text-align: right;
+            padding-right: 4px;
+            align-self: start;
+          }
+          .wg > span {
+            font:
+              600 11px/1.2 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+            text-align: center;
+            padding: 4px 0;
+          }
+          .c0 {
+            background: #1c1f26;
+          }
+          .c1 {
+            background: #1f3a33;
+            color: #bfefdd;
+          }
+          .c2 {
+            background: #1f5a4a;
+            color: #e6fff6;
+          }
+          .c3 {
+            background: #20805f;
+            color: #ffffff;
+          }
+          .c4 {
+            background: #27b887;
+            color: #08130f;
+          }
+          .c5 {
+            background: #2ee6a6;
+            color: #04120c;
+          }
+          .tl {
+            display: grid;
+            grid-template-columns: 78px repeat(14, 1fr);
+            grid-template-rows: 20px 30px repeat(5, 44px);
+            row-gap: 3px;
+          }
+          .tl > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            grid-row: 2;
+            box-shadow: inset 0 0 0 1px #181b21;
+          }
+          .tl .hh {
+            grid-row: 1;
+            font:
+              600 11px 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .tl .nm {
+            grid-column: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .tl .a {
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 10px 'DM Sans',
+              sans-serif;
+          }
+          .tl .bar {
+            align-self: center;
+            height: 30px;
+            margin: 0 1px;
+            border-radius: 6px;
+            background: #20805f;
+          }
+          .ov {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+          }
+          .sh {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1f26;
+            border-top: 1px solid #3a404c;
+            border-radius: 18px 18px 0 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .mi {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            width: 100%;
+            min-height: 44px;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #e8eaf0;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+            text-align: left;
+          }
+          .mi small {
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+        </style>
+      </helmet>
+      <div class="p" style="height: 1340px">
+        <div class="top">
+          <span class="lg"
+            ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+              <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+              <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+              <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+              <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+            >SquadTime</span
+          ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+        </div>
+        <div class="m">
+          <div style="display: flex; align-items: center; gap: 10px">
+            <button class="bt" aria-label="Back to calendar">‹</button>
+            <h1 class="h1">Add my <span style="color: #2ee6a6">times</span></h1>
+          </div>
+          <div class="mu">
+            Set your usual evenings once. Change a single day any time, without touching the rest.
+          </div>
+          <div class="cd">
+            <b class="tt">Usual times</b>
+            <div class="mu">Repeats every week until you change it.</div>
+            <div style="display: flex; gap: 6px">
+              <button class="dy on" aria-pressed="true">Mon</button
+              ><button class="dy" aria-pressed="false">Tue</button
+              ><button class="dy on" aria-pressed="true">Wed</button
+              ><button class="dy" aria-pressed="false">Thu</button
+              ><button class="dy on" aria-pressed="true">Fri</button
+              ><button class="dy" aria-pressed="false">Sat</button
+              ><button class="dy" aria-pressed="false">Sun</button>
+            </div>
+            <div style="display: flex; gap: 10px">
+              <label class="lb">From<input class="in" type="time" value="20:00" /></label
+              ><label class="lb">To<input class="in" type="time" value="23:00" /></label>
+            </div>
+            <div class="mu" style="font-size: 12px">
+              Times are in your timezone: Europe/Amsterdam (UTC+2).
+            </div>
+            <button class="bt pr w">Save usual times</button
+            ><button class="bt w">Add another time range</button>
+          </div>
+          <div class="cd">
+            <b class="tt">Your upcoming times</b>
+            <div class="mu">Next two weeks. Edit or cancel any day on its own.</div>
+            <div class="rw">
+              <div class="d">Wed<span>Oct 7</span></div>
+              <div style="flex: 1">
+                <div
+                  style="
+                    font:
+                      600 14px 'DM Sans',
+                      sans-serif;
+                  "
+                >
+                  20:00 – 23:00
+                </div>
+                <span class="tg">Usual</span
+                ><span class="tg" style="border-color: #ffb547; color: #ffb547">Today</span>
+              </div>
+              <button class="bt">Edit</button>
+            </div>
+            <div class="rw" style="opacity: 0.8">
+              <div class="d">Fri<span>Oct 9</span></div>
+              <div style="flex: 1">
+                <div
+                  style="
+                    font:
+                      600 14px 'DM Sans',
+                      sans-serif;
+                  "
+                >
+                  <s style="color: #9aa1af">20:00 – 23:00</s>
+                </div>
+                <span class="tg">Cancelled</span>
+              </div>
+              <button class="bt">Restore</button>
+            </div>
+            <div
+              style="
+                border: 1px solid #ffb547;
+                border-radius: 12px;
+                background: #1c1f26;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 10px">
+                <div
+                  class="d"
+                  style="
+                    width: 46px;
+                    text-align: center;
+                    font:
+                      700 14px 'Space Grotesk',
+                      sans-serif;
+                  "
+                >
+                  Wed<span
+                    style="
+                      display: block;
+                      font:
+                        400 11px 'DM Sans',
+                        sans-serif;
+                      color: #9aa1af;
+                    "
+                    >Oct 14</span
+                  >
+                </div>
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font:
+                        600 14px 'DM Sans',
+                        sans-serif;
+                    "
+                  >
+                    19:30 – 23:00
+                  </div>
+                  <span class="tg" style="border-color: #ffb547; color: #ffb547"
+                    >Changed · starts 30 min earlier</span
+                  >
+                </div>
+              </div>
+              <div class="sg">
+                <button class="on" aria-pressed="true">Only this time</button
+                ><button aria-pressed="false">All future times</button>
+              </div>
+              <div style="display: flex; gap: 10px">
+                <label class="lb">From<input class="in" type="time" value="19:30" /></label
+                ><label class="lb">To<input class="in" type="time" value="23:00" /></label>
+              </div>
+              <button class="bt pr w">Save change</button>
+              <div style="display: flex; gap: 8px">
+                <button class="bt" style="flex: 1">Reset to usual</button
+                ><button class="bt" style="flex: 1">Cancel this time</button>
+              </div>
+            </div>
+            <div class="rw" style="border: 1px solid #2ee6a6; background: #16201c">
+              <div class="d">Thu<span>Oct 15</span></div>
+              <div style="flex: 1">
+                <div
+                  style="
+                    font:
+                      600 14px 'DM Sans',
+                      sans-serif;
+                  "
+                >
+                  20:00 – 22:30
+                </div>
+                <span class="tg" style="border-color: #2ee6a6; color: #2ee6a6"
+                  >Extra · one time</span
+                >
+              </div>
+              <button class="bt">Edit</button>
+            </div>
+          </div>
+          <button class="bt w">Add one-time slot</button>
+        </div>
+        <div class="tb">
+          <button>Calendar</button><button class="on">My times</button><button>Account</button>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1340}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

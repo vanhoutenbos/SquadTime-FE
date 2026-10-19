@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mobile calendar</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          button,
+          input,
+          select {
+            font-family: inherit;
+            cursor: pointer;
+          }
+          .p {
+            width: 390px;
+            box-sizing: border-box;
+            background: #14161b;
+            color: #e8eaf0;
+            font:
+              400 14px 'DM Sans',
+              sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+          }
+          .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 16px;
+            background: #181b21;
+            border-bottom: 1px solid #2a2e38;
+          }
+          .lg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font:
+              700 18px 'Space Grotesk',
+              sans-serif;
+          }
+          .me {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2a2e38;
+            border: 1px solid #3a404c;
+            color: #e8eaf0;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+            padding: 0;
+          }
+          .m {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+          }
+          .h1 {
+            margin: 0;
+            font:
+              700 22px 'Space Grotesk',
+              sans-serif;
+          }
+          .mu {
+            color: #9aa1af;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+          .bt {
+            min-height: 44px;
+            padding: 0 14px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .pr {
+            background: #ffb547;
+            border-color: #ffb547;
+            color: #1a1203;
+            font-weight: 700;
+          }
+          .w {
+            width: 100%;
+          }
+          .cd {
+            background: #181b21;
+            border: 1px solid #2a2e38;
+            border-radius: 14px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-sizing: border-box;
+          }
+          .tt {
+            margin: 0;
+            font:
+              700 16px 'Space Grotesk',
+              sans-serif;
+          }
+          .tb {
+            display: flex;
+            border-top: 1px solid #2a2e38;
+            background: #181b21;
+          }
+          .tb button {
+            flex: 1;
+            min-height: 56px;
+            border: 0;
+            background: transparent;
+            color: #9aa1af;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+          }
+          .tb .on {
+            color: #2ee6a6;
+            box-shadow: inset 0 2px 0 #2ee6a6;
+          }
+          .sg {
+            display: flex;
+            border: 1px solid #3a404c;
+            border-radius: 10px;
+            overflow: hidden;
+          }
+          .sg button {
+            flex: 1;
+            min-height: 44px;
+            border: 0;
+            background: #1c1f26;
+            color: #9aa1af;
+            font:
+              500 14px 'DM Sans',
+              sans-serif;
+          }
+          .sg .on {
+            background: #2a2e38;
+            color: #e8eaf0;
+            font-weight: 600;
+          }
+          .dy {
+            width: 46px;
+            min-height: 44px;
+            padding: 0;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: transparent;
+            color: #c4c9d4;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+          }
+          .dy.on {
+            background: #2ee6a6;
+            border-color: #2ee6a6;
+            color: #04120c;
+          }
+          .in {
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 10px;
+            border: 1px solid #3a404c;
+            background: #1c1f26;
+            color: #e8eaf0;
+            font:
+              500 15px 'DM Sans',
+              sans-serif;
+            color-scheme: dark;
+            box-sizing: border-box;
+            width: 100%;
+          }
+          .lb {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font:
+              500 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            flex: 1;
+          }
+          .tg {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            border: 1px solid #3a404c;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+            margin-right: 4px;
+          }
+          .rw {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 12px;
+            background: #1c1f26;
+          }
+          .rw .d {
+            width: 46px;
+            text-align: center;
+            font:
+              700 14px 'Space Grotesk',
+              sans-serif;
+          }
+          .rw .d span {
+            display: block;
+            font:
+              400 11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .wg {
+            display: grid;
+            grid-template-columns: 34px repeat(7, 1fr);
+            gap: 2px;
+          }
+          .wg > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            border-radius: 5px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .wg > b {
+            font:
+              500 11px/11px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            margin-top: -5px;
+            text-align: right;
+            padding-right: 4px;
+            align-self: start;
+          }
+          .wg > span {
+            font:
+              600 11px/1.2 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+            text-align: center;
+            padding: 4px 0;
+          }
+          .c0 {
+            background: #1c1f26;
+          }
+          .c1 {
+            background: #1f3a33;
+            color: #bfefdd;
+          }
+          .c2 {
+            background: #1f5a4a;
+            color: #e6fff6;
+          }
+          .c3 {
+            background: #20805f;
+            color: #ffffff;
+          }
+          .c4 {
+            background: #27b887;
+            color: #08130f;
+          }
+          .c5 {
+            background: #2ee6a6;
+            color: #04120c;
+          }
+          .tl {
+            display: grid;
+            grid-template-columns: 78px repeat(14, 1fr);
+            grid-template-rows: 20px 30px repeat(5, 44px);
+            row-gap: 3px;
+          }
+          .tl > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+            grid-row: 2;
+            box-shadow: inset 0 0 0 1px #181b21;
+          }
+          .tl .hh {
+            grid-row: 1;
+            font:
+              600 11px 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+          }
+          .tl .nm {
+            grid-column: 1;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font:
+              600 12px 'DM Sans',
+              sans-serif;
+          }
+          .tl .a {
+            flex: 0 0 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 10px 'DM Sans',
+              sans-serif;
+          }
+          .tl .bar {
+            align-self: center;
+            height: 30px;
+            margin: 0 1px;
+            border-radius: 6px;
+            background: #20805f;
+          }
+          .ov {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+          }
+          .sh {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #1c1f26;
+            border-top: 1px solid #3a404c;
+            border-radius: 18px 18px 0 0;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .mi {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            width: 100%;
+            min-height: 44px;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: #e8eaf0;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+            text-align: left;
+          }
+          .mi small {
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          }
+        </style>
+      </helmet>
+      <div class="p" style="height: 1220px">
+        <div class="top">
+          <span class="lg"
+            ><svg width="24" height="24" viewBox="0 0 28 28" aria-hidden="true">
+              <rect x="2" y="2" width="10" height="10" rx="3" fill="#2EE6A6" />
+              <rect x="16" y="2" width="10" height="10" rx="3" fill="#27B887" />
+              <rect x="2" y="16" width="10" height="10" rx="3" fill="#20805F" />
+              <rect x="16" y="16" width="10" height="10" rx="3" fill="#FFB547" /></svg
+            >SquadTime</span
+          ><button class="me" aria-label="Account menu" aria-haspopup="menu">ME</button>
+        </div>
+        <div class="m">
+          <div>
+            <h1 class="h1">Who's up for a <span style="color: #2ee6a6">game</span>?</h1>
+            <div class="mu" style="margin-top: 4px">
+              Times in Europe/Amsterdam (UTC+2) · <u>Change</u>
+            </div>
+          </div>
+          <div class="sg"><button class="on">Calendar</button><button>By friend</button></div>
+          <div style="display: flex; align-items: center; justify-content: space-between">
+            <button class="bt" aria-label="Previous week">‹</button
+            ><b
+              style="
+                font:
+                  600 15px 'Space Grotesk',
+                  sans-serif;
+              "
+              >Oct 5 – 11</b
+            ><button class="bt" aria-label="Next week">›</button>
+          </div>
+          <div class="cd" style="padding: 10px">
+            <div class="wg">
+              <span></span><span>Mon<br />5</span><span>Tue<br />6</span
+              ><span style="color: #ffb547">Wed<br />7</span><span>Thu<br />8</span
+              ><span>Fri<br />9</span><span>Sat<br />10</span><span>Sun<br />11</span><b>17:00</b
+              ><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c0"></i
+              ><i class="c0"></i><i class="c1">1</i><i class="c1">1</i><b></b><i class="c0"></i
+              ><i class="c0"></i><i class="c0"></i><i class="c0"></i><i class="c1">1</i
+              ><i class="c1">1</i><i class="c1">1</i><b>18:00</b><i class="c0"></i
+              ><i class="c1">1</i><i class="c1">1</i><i class="c0"></i><i class="c1">1</i
+              ><i class="c2">2</i><i class="c2">2</i><b></b><i class="c0"></i><i class="c1">1</i
+              ><i class="c1">1</i><i class="c1">1</i><i class="c1">1</i><i class="c2">2</i
+              ><i class="c2">2</i><b>19:00</b><i class="c1">1</i><i class="c1">1</i
+              ><i class="c2">2</i><i class="c1">1</i><i class="c2">2</i><i class="c3">3</i
+              ><i class="c3">3</i><b></b><i class="c1">1</i><i class="c2">2</i><i class="c2">2</i
+              ><i class="c1">1</i><i class="c2">2</i><i class="c3">3</i><i class="c3">3</i
+              ><b>20:00</b><i class="c2">2</i><i class="c3">3</i><i class="c3">3</i
+              ><i class="c2">2</i><i class="c4">4</i><i class="c3">3</i><i class="c4">4</i><b></b
+              ><i class="c2">2</i><i class="c3">3</i><i class="c3">3</i><i class="c2">2</i
+              ><i class="c4">4</i><i class="c4">4</i><i class="c4">4</i><b>21:00</b
+              ><i class="c2">2</i><i class="c4">4</i><i class="c3">3</i><i class="c2">2</i
+              ><i class="c5" style="box-shadow: inset 0 0 0 2px #ffb547">5</i><i class="c4">4</i
+              ><i class="c4">4</i><b></b><i class="c2">2</i><i class="c4">4</i><i class="c3">3</i
+              ><i class="c2">2</i><i class="c5" style="box-shadow: inset 0 0 0 2px #ffb547">5</i
+              ><i class="c4">4</i><i class="c4">4</i><b>22:00</b><i class="c1">1</i
+              ><i class="c3">3</i><i class="c2">2</i><i class="c1">1</i
+              ><i class="c5" style="box-shadow: inset 0 0 0 2px #ffb547">5</i><i class="c4">4</i
+              ><i class="c3">3</i><b></b><i class="c1">1</i><i class="c3">3</i><i class="c2">2</i
+              ><i class="c1">1</i><i class="c5" style="box-shadow: inset 0 0 0 2px #ffb547">5</i
+              ><i class="c3">3</i><i class="c3">3</i><b>23:00</b><i class="c0"></i
+              ><i class="c1">1</i><i class="c1">1</i><i class="c0"></i><i class="c3">3</i
+              ><i class="c3">3</i><i class="c1">1</i><b></b><i class="c0"></i><i class="c1">1</i
+              ><i class="c1">1</i><i class="c0"></i><i class="c3">3</i><i class="c2">2</i
+              ><i class="c1">1</i>
+            </div>
+            <div class="mu" style="font-size: 11px">
+              Tap a block to see who is free. Numbers are friends free.
+            </div>
+          </div>
+          <div class="cd" style="border-left: 4px solid #ffb547">
+            <div
+              style="
+                font:
+                  600 11px 'DM Sans',
+                  sans-serif;
+                color: #ffb547;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+              "
+            >
+              Best time this week
+            </div>
+            <div
+              style="
+                font:
+                  700 18px 'Space Grotesk',
+                  sans-serif;
+              "
+            >
+              Fri 21:00 – 23:00
+            </div>
+            <div style="color: #2ee6a6; font-weight: 500">All 5 friends who share are free</div>
+            <button
+              class="bt w"
+              style="
+                border-color: #ffb547;
+                color: #ffb547;
+                background: transparent;
+                font-weight: 600;
+              "
+            >
+              See this evening
+            </button>
+          </div>
+          <div class="cd">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              <div>
+                <b class="tt">Friends</b>
+                <div class="mu">7 friends · 5 sharing</div>
+              </div>
+              <button class="bt">Show in calendar</button>
+            </div>
+            <div style="display: flex; gap: 8px">
+              <span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  background: #2a2e38;
+                "
+                >MA</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  background: #2a2e38;
+                "
+                >JO</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  background: #2a2e38;
+                "
+                >SA</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  background: #2a2e38;
+                "
+                >PR</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  background: #2a2e38;
+                "
+                >TO</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  border: 1px dashed #5c6370;
+                  color: #9aa1af;
+                "
+                >DA</span
+              ><span
+                style="
+                  flex: 0 0 36px;
+                  width: 36px;
+                  height: 36px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font:
+                    600 12px 'DM Sans',
+                    sans-serif;
+                  box-sizing: border-box;
+                  border: 1px dashed #5c6370;
+                  color: #9aa1af;
+                "
+                >EL</span
+              >
+            </div>
+          </div>
+          <button class="bt pr w">Add my schedule</button>
+        </div>
+        <div class="tb">
+          <button class="on">Calendar</button><button>My times</button><button>Account</button>
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1220}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>

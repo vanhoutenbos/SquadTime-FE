@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hover state</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          body {
+            margin: 0;
+          }
+          .g {
+            position: absolute;
+            left: 24px;
+            top: 64px;
+            display: grid;
+            grid-template-columns: 52px repeat(3, 64px);
+            gap: 4px;
+          }
+          .g > i {
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            border-radius: 6px;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+          }
+          .g > b {
+            font:
+              500 12px/12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+            display: block;
+            align-self: start;
+            margin-top: -6px;
+            text-align: right;
+            padding-right: 8px;
+          }
+          .h {
+            font:
+              600 13px 'Space Grotesk',
+              sans-serif;
+            color: #9aa1af;
+            text-align: center;
+            padding: 6px 0;
+          }
+          .c1 {
+            background: #1f3a33;
+            color: #bfefdd;
+          }
+          .c2 {
+            background: #1f5a4a;
+            color: #e6fff6;
+          }
+          .c3 {
+            background: #20805f;
+            color: #ffffff;
+          }
+          .c4 {
+            background: #27b887;
+            color: #08130f;
+          }
+          .f {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font:
+              600 14px 'DM Sans',
+              sans-serif;
+          }
+          .f small {
+            margin-left: auto;
+            font:
+              500 13px 'DM Sans',
+              sans-serif;
+            color: #c4c9d4;
+          }
+          .av {
+            flex: 0 0 28px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #2a2e38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font:
+              600 11px 'DM Sans',
+              sans-serif;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          position: relative;
+          width: 560px;
+          height: 400px;
+          background: #14161b;
+          color: #e8eaf0;
+          font-family: 'DM Sans', sans-serif;
+          overflow: hidden;
+        "
+      >
+        <div
+          style="
+            position: absolute;
+            left: 24px;
+            top: 20px;
+            font:
+              600 13px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          "
+        >
+          Hover state · Calendar view
+        </div>
+
+        <div class="g">
+          <span class="h"></span><span class="h">Tue 6</span><span class="h">Wed 7</span
+          ><span class="h" style="color: #e8eaf0">Thu 8</span> <b></b><i class="c2">2</i
+          ><i class="c2">2</i><i class="c1">1</i> <b>20:00</b><i class="c3">3</i><i class="c3">3</i
+          ><i class="c2" style="box-shadow: 0 0 0 2px #e8eaf0">2</i> <b></b><i class="c3">3</i
+          ><i class="c3">3</i><i class="c2">2</i> <b>21:00</b><i class="c4">4</i><i class="c3">3</i
+          ><i class="c2">2</i>
+        </div>
+
+        <div
+          role="tooltip"
+          style="
+            position: absolute;
+            left: 292px;
+            top: 104px;
+            width: 244px;
+            box-sizing: border-box;
+            background: #1c1f26;
+            border: 1px solid #3a404c;
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+          "
+        >
+          <div
+            style="
+              position: absolute;
+              left: -7px;
+              top: 30px;
+              width: 12px;
+              height: 12px;
+              background: #1c1f26;
+              border-left: 1px solid #3a404c;
+              border-bottom: 1px solid #3a404c;
+              transform: rotate(45deg);
+            "
+          ></div>
+          <div>
+            <div
+              style="
+                font:
+                  700 15px 'Space Grotesk',
+                  sans-serif;
+              "
+            >
+              Thu Oct 8 · 20:00 – 20:30
+            </div>
+            <div
+              style="
+                font:
+                  400 12px 'DM Sans',
+                  sans-serif;
+                color: #9aa1af;
+                margin-top: 2px;
+              "
+            >
+              Your time (CEST)
+            </div>
+          </div>
+          <div
+            style="
+              font:
+                600 13px 'DM Sans',
+                sans-serif;
+              color: #2ee6a6;
+            "
+          >
+            2 friends free
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div class="f"><span class="av">PR</span>Priya<small>19:00 · London</small></div>
+            <div class="f"><span class="av">MA</span>Mara<small>20:00</small></div>
+          </div>
+          <div
+            style="
+              border-top: 1px solid #2a2e38;
+              padding-top: 10px;
+              font:
+                400 12px 'DM Sans',
+                sans-serif;
+              color: #9aa1af;
+            "
+          >
+            Not free: Joeri, Sanne, Tom
+          </div>
+          <div
+            style="
+              font:
+                500 12px 'DM Sans',
+                sans-serif;
+              color: #ffb547;
+            "
+          >
+            Click to see the whole evening
+          </div>
+        </div>
+
+        <div
+          style="
+            position: absolute;
+            left: 24px;
+            bottom: 20px;
+            right: 24px;
+            font:
+              400 12px 'DM Sans',
+              sans-serif;
+            color: #9aa1af;
+          "
+        >
+          On mobile, tap a block: the same card opens as a bottom sheet. Keyboard focus shows it
+          too.
+        </div>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":560,"height":400}}'>
+      class Component extends DCLogic {
+      renderVals() {
+      return {};
+      }
+      }
+    </script>
+  </body>
+</html>
