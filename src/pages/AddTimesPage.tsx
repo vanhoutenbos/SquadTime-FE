@@ -34,6 +34,7 @@ export default function AddTimesPage() {
   const [loading, setLoading] = useState(false);
   const [saveError, setSaveError] = useState('');
   const [upcomingItems, setUpcomingItems] = useState<UpcomingItem[]>([]);
+  const [savedRules, setSavedRules] = useState<Rule[]>([]);
 
   const computeWeekRange = (now: Date): { weekStart: number; weekEnd: number } => {
     const d = new Date(now);
@@ -108,7 +109,10 @@ export default function AddTimesPage() {
           })
         );
         const items = buildUpcomingItems(rules, exceptions, tz, weekStart, weekEnd, rangeEnd);
-        if (!cancelled) setUpcomingItems(items);
+        if (!cancelled) {
+          setUpcomingItems(items);
+          setSavedRules(rules);
+        }
       })
       .catch(() => {});
     return () => {
@@ -145,9 +149,7 @@ export default function AddTimesPage() {
         setSaveError(data.error || 'Failed to save rule');
         return;
       }
-      setSelectedWeekdays([1, 3, 5]);
-      setRuleStart('20:00');
-      setRuleEnd('23:00');
+      // Keep form open so user can add another range (e.g. disjoint schedule)
       await refreshUpcoming();
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : 'Something went wrong');
@@ -244,6 +246,7 @@ export default function AddTimesPage() {
       })
     );
     setUpcomingItems(buildUpcomingItems(rules, exceptions, tz, weekStart, weekEnd, rangeEnd));
+    setSavedRules(rules);
   };
 
   const handleCancelItem = async (item: UpcomingItem) => {
@@ -292,22 +295,49 @@ export default function AddTimesPage() {
       const exceptionId = editingItem.exceptionId;
       const url = exceptionId ? `/api/exceptions/${exceptionId}` : `/api/exceptions`;
       const method = exceptionId ? 'PUT' : 'POST';
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          rule_id: editingItem.ruleId ?? null,
-          local_date: editingItem.date,
-          type: editingItem.status === 'cancelled' ? 'cancelled' : 'changed',
-          start_time: ruleStart,
-          end_time: ruleEnd,
-        }),
-      });
-      if (!response.ok) {
-        const data = await response.json();
-        setSaveError(data.error || 'Failed to save change');
-        return;
+
+      if (applyTo === 'future') {
+        // Split the recurring rule at this date (close old, create new with new times)
+        if (!editingItem.ruleId) {
+          setSaveError('Cannot split: no rule linked to this time');
+          setLoading(false);
+          return;
+        }
+        const splitResp = await fetch(`/api/rules/${editingItem.ruleId}/split`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            local_date: editingItem.date,
+            start_time: ruleStart,
+            end_time: ruleEnd,
+          }),
+        });
+        if (!splitResp.ok) {
+          const data = await splitResp.json();
+          setSaveError(data.error || 'Failed to split rule');
+          setLoading(false);
+          return;
+        }
+      } else {
+        const response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({
+            rule_id: editingItem.ruleId ?? null,
+            local_date: editingItem.date,
+            type: editingItem.status === 'cancelled' ? 'cancelled' : 'changed',
+            start_time: ruleStart,
+            end_time: ruleEnd,
+          }),
+        });
+        if (!response.ok) {
+          const data = await response.json();
+          setSaveError(data.error || 'Failed to save change');
+          setLoading(false);
+          return;
+        }
       }
       setEditingItem(null);
       setApplyTo('only');
@@ -447,6 +477,20 @@ export default function AddTimesPage() {
               onClear={handleClearAllRules}
               loading={loading}
               saveError={saveError}
+              savedRules={savedRules}
+              onDeleteRule={async (id: number) => {
+                if (!window.confirm('Delete this usual time?')) return;
+                setLoading(true);
+                try {
+                  await fetch(`/api/rules/${id}`, { method: 'DELETE', credentials: 'include' });
+                  await refreshUpcoming();
+                } catch { /* ignore */ } finally { setLoading(false); }
+              }}
+              onLoadRule={(r: Rule) => {
+                setSelectedWeekdays(r.weekdays);
+                setRuleStart(r.start_time);
+                setRuleEnd(r.end_time);
+              }}
             />
 
             <section
