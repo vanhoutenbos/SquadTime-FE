@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { expandRule, applyExceptions, localToUtc, utcToLocal } from './timeEngine';
+import { expandRule, utcToLocal } from './timeEngine';
 
 describe('DST group — local time stays at wall-clock', () => {
   it('Tuesday 20:00 in Amsterdam is 20:00 local, not shifted by server tz', () => {

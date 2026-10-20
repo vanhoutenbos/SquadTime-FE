@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { buildUpcomingItems, formatDayMonth, WEEKDAYS } from './TimeHelpers';
+import { buildUpcomingItems, formatDayMonth } from './TimeHelpers';
 import { Rule, Exception } from '../engine/timeEngine';
 
 describe('TimeHelpers', () => {

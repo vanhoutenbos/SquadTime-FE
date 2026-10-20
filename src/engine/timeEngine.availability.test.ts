@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { computeAvailability, UserAvailability, EffectiveWindow } from './timeEngine';
+import { computeAvailability, UserAvailability } from './timeEngine';
 
 describe('computeAvailability / group overlap', () => {
   it('counts overlap when two users share the same window', () => {
@@ -16,7 +16,7 @@ describe('computeAvailability / group overlap', () => {
       },
     ];
     const result = computeAvailability(users, 'UTC', Date.parse('2026-11-03T00:00:00Z'), Date.parse('2026-11-04T00:00:00Z'));
-    const counts = Array.from(result.slotCounts.entries()).map(([k, v]) => v);
+    const counts = Array.from(result.slotCounts.entries()).map(([, v]) => v);
     expect(counts.some((c) => c >= 2)).toBe(true);
   });
 

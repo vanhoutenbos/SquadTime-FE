@@ -8,7 +8,7 @@ describe('Exception interaction with split rules', () => {
     const exceptions = [
       { id: 1, user_id: 'u', rule_id: 1, local_date: '2026-11-03', type: 'changed', start_time: '19:00', end_time: '21:00' },
     ];
-    const result = applyExceptions(occurrences as any, exceptions, 'UTC');
+    const result = applyExceptions(occurrences as Array<{ start: number; end: number; localDate: string; rule_id: number }>, exceptions, 'UTC');
     expect(result.length).toBe(1);
     expect(result[0].status).toBe('changed');
     expect(result[0].start).toBe(localToUtc('2026-11-03', '19:00', 'UTC'));
