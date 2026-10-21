@@ -358,7 +358,8 @@ export function computeAvailability(
   users: UserAvailability[],
   timezone: string,
   rangeStart: number,
-  rangeEnd: number
+  rangeEnd: number,
+  now: number = Date.now()
 ): AvailabilityResult {
   const allWindows: EffectiveWindow[] = [];
   const userWindows = new Map<string, EffectiveWindow[]>();
@@ -378,7 +379,7 @@ export function computeAvailability(
   }
 
   const slotCounts = windowsToSlots(allWindows, timezone, rangeStart, rangeEnd);
-  const tonight = computeTonight(allWindows, timezone);
+  const tonight = computeTonight(allWindows, timezone, now);
 
   return { slotCounts, tonight, userWindows };
 }

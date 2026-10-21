@@ -1,4 +1,5 @@
 import { WEEKDAYS } from './TimeHelpers';
+import { Rule } from '../engine/timeEngine';
 
 const timeInputStyle: React.CSSProperties = {
   minHeight: 44,
@@ -25,6 +26,9 @@ export interface RuleFormProps {
   onClear: () => void;
   loading: boolean;
   saveError: string;
+  savedRules?: Rule[];
+  onDeleteRule?: (id: number) => void;
+  onLoadRule?: (rule: Rule) => void;
 }
 
 export default function RuleForm({
@@ -39,8 +43,16 @@ export default function RuleForm({
   onClear,
   loading,
   saveError,
+  savedRules = [],
+  onDeleteRule,
+  onLoadRule,
 }: RuleFormProps) {
   const isWeekdaySelected = (day: number) => selectedWeekdays.includes(day);
+  const formatDays = (days: number[]) =>
+    days
+      .map((d) => WEEKDAYS.find((w) => w.key === d)?.label || '')
+      .filter(Boolean)
+      .join(', ');
 
   return (
     <section
@@ -57,9 +69,72 @@ export default function RuleForm({
       <div>
         <h2 style={{ margin: 0, font: '700 18px var(--font-heading)' }}>Usual times</h2>
         <p style={{ margin: '4px 0 0', font: '400 14px var(--font-body)', color: '#9AA1AF' }}>
-          Repeats every week until you change it.
+          Repeats every week until you change it. Add multiple ranges for disjoint schedules.
         </p>
       </div>
+
+      {savedRules.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ font: '500 13px var(--font-body)', color: '#9AA1AF' }}>Your saved ranges</span>
+          {savedRules.map((r) => (
+            <div
+              key={r.id}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '6px 10px',
+                borderRadius: 10,
+                background: 'var(--surface)',
+                border: '1px solid var(--border-strong)',
+              }}
+            >
+              <div style={{ font: '500 14px var(--font-body)', color: 'var(--text)' }}>
+                {formatDays(r.weekdays)} · {r.start_time} – {r.end_time}
+              </div>
+              <div style={{ display: 'flex', gap: 6 }}>
+                {onLoadRule && (
+                  <button
+                    type="button"
+                    onClick={() => onLoadRule(r)}
+                    style={{
+                      minHeight: 36,
+                      padding: '0 10px',
+                      borderRadius: 8,
+                      border: '1px solid var(--border-strong)',
+                      background: 'transparent',
+                      color: 'var(--text)',
+                      font: '500 13px var(--font-body)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Edit
+                  </button>
+                )}
+                {onDeleteRule && (
+                  <button
+                    type="button"
+                    onClick={() => onDeleteRule(r.id)}
+                    style={{
+                      minHeight: 36,
+                      padding: '0 10px',
+                      borderRadius: 8,
+                      border: '1px solid #FF5C5C',
+                      background: 'transparent',
+                      color: '#FF5C5C',
+                      font: '500 13px var(--font-body)',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }} role="group" aria-label="Days">
         {WEEKDAYS.map((wd) => (
           <button
@@ -142,6 +217,8 @@ export default function RuleForm({
         </button>
         <button
           type="button"
+          onClick={onSave}
+          disabled={loading}
           style={{
             minHeight: 44,
             padding: '0 14px',
