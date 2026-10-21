@@ -1,11 +1,11 @@
-import { applyExceptions, localToUtc } from '../engine/timeEngine';
+import { applyExceptions, localToUtc, Exception } from '../engine/timeEngine';
 import { describe, it, expect } from 'vitest';
 
 describe('Exception interaction with split rules', () => {
   it('changed exception for an edited occurrence is replaced after split', () => {
     const base = Date.parse('2026-11-03T20:00:00');
     const occurrences = [{ start: base, end: base + 3 * 3600000, localDate: '2026-11-03', rule_id: 1 }];
-    const exceptions = [
+    const exceptions: Exception[] = [
       { id: 1, user_id: 'u', rule_id: 1, local_date: '2026-11-03', type: 'changed', start_time: '19:00', end_time: '21:00' },
     ];
     const result = applyExceptions(occurrences as Array<{ start: number; end: number; localDate: string; rule_id: number }>, exceptions, 'UTC');
